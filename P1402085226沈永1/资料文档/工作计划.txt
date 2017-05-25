@@ -1,0 +1,36 @@
+5.10
+1 学习使用gensim ,完成相似度计算
+2 处理cv jd 数据
+5.11
+json写入的文件，为什么读不出来？
+
+5.15
+1 周五讲一下DSSM
+2 word2vec用相关性文本训练，还是用这个数据库进行训练
+3 明天训练word2vec看效果  权重tf-idf
+
+5.16
+1.月底看效果
+2.个人工作经历统计
+3.建立每份简历 工作职能（tag）的引索和工作描述
+4.gemsim中保存的字典，tf-idf,LSI_vec的整个库的引索简历
+
+curl 'http://192.168.8.54:6688/?handle=recommendation&m=jd&jd_id=17684742'
+
+curl 'http://192.168.8.54:6688/?handle=recommendation&m=jdcv_matchscore&jd_id=1200535&cv_id=12085919'
+明天：crontab 、数据库
+
+
+
+
+1、total    select count(1) from positions;
+2、pagesize=100;
+3、page = total/pagesize;
+4、for page
+
+   page =1     select * from positions limit (page-1)*pagesize,pagesize   
+
+5.24
+1、多线程调用curl
+2、多线程sql写入
+3、计算公司距离

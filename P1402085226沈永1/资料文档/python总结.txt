@@ -1,0 +1,104 @@
+1 python乱码问题：中文txt文档输入可能不是utf8
+
+import sys
+reload(sys)
+sys.setdefaultencoding("utf8")
+
+str.decode("gb2312").encode("utf8")
+将ascii码强制转换为utf8
+str.encode(encoding="utf-8", errors="strict") 
+
+2 json
+json.loads(obj) obj 由 str转换为dict
+json.dumps(obj) obj 由 dict转换为str
+json.dumps(obj,ensure_ascii=False,encoding="utf8",indent=4)
+
+3.在用vim编辑文件时，常常会用到一个功能：把编辑文件的几行内容拷贝到一个新文件中。怎么实现该功能？
+假设编辑文件nginx.conf ，把该文件的51至91行拷贝到新文件./vhost/res.help.com.conf中，详细实现，请参阅下面示例：
+:51,91w!./vhost/res.help.com.conf
+
+4. instance(a,type)
+ 判断a的类型是否是type，是为True,否为False
+
+5.对于已保存的文件，可以使用下面的方法进行空格和TAB的替换：
+TAB替换为空格：
+:set ts=4
+
+6.在服务器中直接安装anaconda虚拟环境
+:set expandtab
+:%retab!
+
+7. linux中.bashrc
+{
+	1 进入用户的根目录
+	cd  $HOME 或 cd ~
+
+	2 然后打开.bashrc若不存在则新建.bashrc文件
+	vi  .bashrc
+
+	3 在.bashrc页面最后加上想要加的路径
+	export PATH=$PATH:/opt/my-tools/android-sdk/tools
+
+	4 最后执行
+	source ~/.bashrc
+	至此环境变量起作用了
+}
+eg
+{
+alias db_cv_even='/opt/app/mysql/bin/mysql -h192.168.8.134 -utuser -ptu7319m -P3306'
+alias db_cv_odd='/opt/app/mysql/bin/mysql -h192.168.8.136 -utuser -ptu7319m -P3306'
+
+alias db_jd_client='/opt/app/mysql/bin/mysql -h192.168.8.105 -ukdd -pGeYFL4EU,tcOtP$W -P3307'
+
+
+alias db_jd_even='/opt/app/mysql/bin/mysql -h192.168.8.134 -ukdd -pkd12934d -P3307'
+alias db_jd_odd='/opt/app/mysql/bin/mysql -h192.168.8.136 -utuser -ptu7319m -P3307'
+
+# added by Anaconda2 4.3.1 installer
+export PATH="/opt/userhome/icshenyong/anaconda2/bin:$PATH"
+
+}
+上面四个是打开数据库指令，最下面是source activate anaconda2
+
+
+7.Linux下MySQL数据库常用基本操作
+
+1、显示数据库
+ show databases;
+
+2、选择数据库
+use 数据库名;
+
+3、显示数据库中的表
+show tables;
+
+4、显示数据表的结构?
+describe 表名;
+
+5、显示表中记录?
+SELECT * FROM 表名
+
+6、建库
+create databse 库名;
+
+7、查看positins表的内部结构；
+show create table positions\G;
+
+8、分页查询
+1、total    select count(1) from positions;
+2、pagesize=100;
+3、page = total/pagesize;
+4、for page
+
+   page =1     select * from positions limit (page-1)*pagesize,pagesize   
+
+select * from positions where id>=(select id from positions order by id desc limit 1000000,1) limit 10\G;
+
+select account_bind.corporation_id,account_bind.corporation_name,resume_list.icdc_id from account_bind,resume_list where account_bind.corporation_id=resume_list.corporation_id or resume_list.corporation_id in (select account_bind.sub_corporation_ids from account_bind) limit 40\G;
+
+9、删除**整个表里的数据
+delete from **;
+
+10 注意事项：
+每次执行，cursor.execute(sql)
+都要执行，cursor.commit()
